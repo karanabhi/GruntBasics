@@ -26,6 +26,23 @@ module.exports = function (grunt) {
                     'build/scripts.min.js': ['build/scripts.js']
                 }
             }
+        },
+        "regex-replace": {
+            build: {
+                src: ['screen1.html'],
+                dest: 'build/screen1.html',
+                actions: [{
+                    name: 'inkd',
+                    search: '<inkd-',
+                    replace: '<alc-',
+                    flags: 'g'
+                }, {
+                    name: 'inkdi',
+                    search: '</inkd-',
+                    replace: '</alc-',
+                    flags: 'g'
+                }]
+            }
         }
     });
 
@@ -33,10 +50,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-regex-replace');//Main focus task
 
     //Register Tasks
     grunt.registerTask('concat-js', ['concat:js']);
     grunt.registerTask('concat-css', ['concat:css']);
     grunt.registerTask('sass-scss', ['sass:dist']);
     grunt.registerTask('uglify-js', ['uglify:dist']);
+    grunt.registerTask('tag-replace', 'regex-replace:build');//Main focus task
 };
