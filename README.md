@@ -3,6 +3,6 @@ Grunt Tool in the making...
 
 Run Guide:
 
-npm install
-npm i -g grunt
-grunt tag-replace
+1) npm install
+2) npm i -g grunt
+3) grunt tag-replace
